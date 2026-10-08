@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electronic Component Fault Detection</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+    <h1>Electronic Component Fault Detection</h1>
+    <p class="subtitle">Machine Learning Based Fault Prediction System</p>
+
+    <form method="POST">
+        <div class="grid">
+            <label>Voltage (V)
+                <input type="number" name="voltage" step="0.01" min="0" required>
+            </label>
+            <label>Current (A)
+                <input type="number" name="current" step="0.01" min="0" required>
+            </label>
+            <label>Resistance (Ω)
+                <input type="number" name="resistance" step="0.01" min="0" required>
+            </label>
+            <label>Temperature (°C)
+                <input type="number" name="temperature" step="0.1" required>
+            </label>
+            <label>Frequency (Hz)
+                <input type="number" name="frequency" step="0.1" min="0" required>
+            </label>
+            <label>Vibration
+                <input type="number" name="vibration" step="0.01" min="0" required>
+            </label>
+        </div>
+        <button type="submit">Predict Component Condition</button>
+    </form>
+
+    {% if result %}
+    <div class="result">
+        <h2>{{ result }}</h2>
+        <p>Prediction confidence: <strong>{{ probability }}%</strong></p>
+    </div>
+    {% endif %}
+
+    <div class="info">
+        <h3>Features Used</h3>
+        <p>Voltage • Current • Resistance • Temperature • Frequency • Vibration</p>
+        <p><strong>Model:</strong> Random Forest Classifier</p>
+    </div>
+</div>
+</body>
+</html>
